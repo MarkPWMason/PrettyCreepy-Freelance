@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//home
 Route::get('/', function () {
     return view('homepage');
-});
+})->name('home');
+
+//login
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::post('/admin', [AdminController::class, 'adminLogin'])->name('adminLogin')->middleware('throttle:10,1');
+
+//create-item
+Route::get('/create-item', function(){
+    return view('create-item');
+})->name('create-item');

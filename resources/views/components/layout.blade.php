@@ -11,18 +11,29 @@
     @if(Request::path() == '/')
         @vite(['resources/css/homepage.css'])
     @endif 
+
+    @if(Request::path() == 'admin')
+        @vite(['resources/css/admin.css'])
+    @endif 
+
+    @if(Request::path() == 'create-item')
+        @vite(['resources/css/create-item.css'])
+    @endif 
 </head>
 
 <body>
     <header id="headerContainer">
-        <div class="">
-            <div class="">
-                <a href="" class="" title="Search" data-toggle="tooltip"
-                    data-placement="bottom"><i class=""></i></a>
-                <span class="" title="Chat" data-toggle="tooltip"
-                    data-placement="bottom"><i class=""></i></span>
-                <a href="" class="mr-2"></a>
-                <a class="" href=""></a>
+        <div id="navContainer">
+            <div>
+                <a href="{{route('home')}}"><img id="headerLogo" src="/images/LogoPlaceholder.png" alt="">
+            </div></a>
+                
+            <div id="navIcons">
+                <ul>
+                    <li>Search</li>
+                    <li>Basket</li>
+                    <li>Menu</li>
+                </ul>
             </div>
         </div>
     </header>

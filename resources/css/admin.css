@@ -1,0 +1,25 @@
+body {
+    background-color: #ffcff9;
+}
+#adminContainer {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+
+    justify-self: center;
+    align-self: center;
+
+    margin: 200px auto;
+}
+
+.formInput{
+    margin: 10px 0;
+    height: 30px;
+    font-size: 20px;
+}
+
+.btn {
+    width: 100px;
+    height: 30px;
+}

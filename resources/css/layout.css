@@ -1,6 +1,8 @@
 body {
     margin: 0;
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 :root {
@@ -20,7 +22,7 @@ body {
     width: auto;
     height: 90px;
     padding: 20px 0;
-    background-color: black;
+    background: transparent;
 }
 
 #footerContainer {
@@ -29,5 +31,22 @@ body {
     background-color: black;
 }
 
+#headerLogo {
+    margin: 10px;
+    height: 80px;
+    width: 150px;
+}
 
+#navContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
+    margin: 5px;
+}
+
+#navIcons ul li{
+    display: inline;
+    list-style-type:none;
+    padding: 10px;
+}

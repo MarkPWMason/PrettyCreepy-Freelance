@@ -1,0 +1,15 @@
+#createItemContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffcff9;
+}
+
+#createListingForm{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    text-align: center;
+}

@@ -5,7 +5,7 @@
 }
 
 .welcome_image {
-    background-image: url("/public/images/welcome_image.webp");
+    background-image: url("/public/images/trees2.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -117,8 +117,17 @@ section {
     padding: 0 20px;
 }
 
-.welcome_image .welcome_text h1 {
-    font-size: 60px;
+#logoImage {
+    width: 500px;
+    height: 500px;
     line-height: 1.6em;
     margin-bottom: 20px;
+}
+
+.featured_products {
+    color: white;
+    text-align: center;
+    margin: 0 0 60px;
+    font-size: 26px;
+    margin-top: 200px;
 }

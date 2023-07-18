@@ -4,8 +4,7 @@
 
         </div>
         <div class="welcome_text">
-            <h1>Pretty Creepy</h1>
-            <a href="">Shopping</a>
+            <img id="logoImage" src="/images/PCText.webp" alt="">
         </div>
     </div>
     <section class="content page-home theme has_welcome">
@@ -15,7 +14,5 @@
             <li><a title="Jewellery" style="height: 620px; overflow: hidden; position: relative;" href=""><img
                         class="image" src="/images/test.png" alt=""></a></li>
         </ul>
-        <h2></h2>
-        <ul></ul>
     </section>
 </x-layout>
