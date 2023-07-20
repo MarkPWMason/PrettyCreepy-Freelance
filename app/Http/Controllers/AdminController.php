@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
 
-    public function admin(Request $request)
+    public function admin()
     {
         return view('admin');
     }
@@ -25,5 +25,10 @@ class AdminController extends Controller
             return redirect('/admin');
         }
         
+    }
+
+    public function adminLogout(){
+        auth()->logout();
+        return redirect('/');
     }
 }

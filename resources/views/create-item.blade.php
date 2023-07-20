@@ -2,9 +2,9 @@
     <div id="createItemContainer">
         <form id="createListingForm" action="" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="image" name="image">
+            <input type="file" name="image[]" multiple>
             <input type="text" name="title" placeholder="title">
-            <input type="number" name="price" placeholder="price">
+            <input type="text" name="price" placeholder="price">
             <label for="category">category</label>
             <select name="category" id=""> 
                 <option value="Clothing">Clothing</option>

@@ -8,31 +8,43 @@
     <title>Pretty Creepy</title>
 
     @vite(['resources/css/layout.css'])
-    @if(Request::path() == '/')
+    @if (Request::path() == '/')
         @vite(['resources/css/homepage.css'])
-    @endif 
+    @endif
 
-    @if(Request::path() == 'admin')
+    @if (Request::path() == 'admin')
         @vite(['resources/css/admin.css'])
-    @endif 
+    @endif
 
-    @if(Request::path() == 'create-item')
+    @if (Request::path() == 'create-item')
         @vite(['resources/css/create-item.css'])
-    @endif 
+    @endif
+
+    @if (Request::path() == 'products')
+    @vite(['resources/css/listings.css'])
+@endif
 </head>
 
 <body>
     <header id="headerContainer">
         <div id="navContainer">
             <div>
-                <a href="{{route('home')}}"><img id="headerLogo" src="/images/LogoPlaceholder.png" alt="">
+                <a href="{{ route('home') }}"><img id="headerLogo" src="/images/LogoPlaceholder.png" alt="">
             </div></a>
-                
+            <p>ID: {{ is_null(auth()->user()) ? 'NULL' : auth()->user()->id }}</p>
+
+            @if (auth()->user())
+            <form action="{{ route('adminLogout') }}" method="POST">
+                @csrf
+                <button>logout</button>
+            </form>
+            @endif
+
             <div id="navIcons">
                 <ul>
-                    <li>Search</li>
-                    <li>Basket</li>
-                    <li>Menu</li>
+                    <li><img class="navImg" src="/images/search.webp" alt=""></li>
+                    <li><img class="navImg" src="/images/basket.webp" alt=""></li>
+                    <li><img class="navImg" src="/images/burgerbar.webp" alt=""></li>
                 </ul>
             </div>
         </div>
@@ -42,7 +54,7 @@
 {{ $slot }}
 
 <footer id="footerContainer">
-    
+
 </footer>
 
 </html>

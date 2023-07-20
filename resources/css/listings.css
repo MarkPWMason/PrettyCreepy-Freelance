@@ -1,0 +1,26 @@
+.content {
+    margin: 360px 40px;
+}
+
+#listingsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#listingContainer{
+    border: 5px solid var(--pink);
+    margin: 30px;
+}
+
+#productImage{
+    height: 400px;
+    width: 400px;
+}
+
+#listingDetails {
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    line-height: 20px;
+}

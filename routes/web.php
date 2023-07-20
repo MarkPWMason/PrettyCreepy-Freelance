@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,15 @@ Route::get('/', function () {
 
 //login
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::post('/admin', [AdminController::class, 'adminLogin'])->name('adminLogin')->middleware('throttle:10,1');
+Route::post('/adminLogin', [AdminController::class, 'adminLogin'])->name('adminLogin')->middleware('throttle:10,1');
+Route::post('/adminLogout', [AdminController::class, 'adminLogout'])->name('adminLogout')->middleware('mustBeLoggedIn');
 
 //create-item
-Route::get('/create-item', function(){
-    return view('create-item');
-})->name('create-item');
+Route::get('/create-item', [ListingController::class, 'createListing'])->name('create-item')->middleware('mustBeLoggedIn');
+Route::post('/create-item', [ListingController::class, 'postListing'])->name('post-item')->middleware('mustBeLoggedIn');
+
+//Access images
+Route::get('image/{fileName}', [ImageController::class, 'getImage'])->name('image');
+
+//Listings
+Route::get('/products', [ListingController::class, 'showListings']);
