@@ -1,16 +1,22 @@
 .content {
-    margin: 360px 40px;
+    margin: 360px 20px;
 }
 
 #listingsContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+#listingContainer:hover{
+    cursor: pointer;
 }
 
 #listingContainer{
     border: 5px solid var(--pink);
-    margin: 30px;
+    margin: 20px;
+    text-align: center;
 }
 
 #productImage{

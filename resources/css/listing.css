@@ -1,0 +1,40 @@
+.content {
+    margin: 360px 20px;
+}
+
+body {
+    background-color: pink;
+}
+
+#carouselExampleCaptions{
+    width: 40%;
+}
+
+#listingImg{
+    width: 580px;
+    height: 580px;
+}
+
+.activePreviewImage{
+    opacity: 1 !important;
+}
+
+.imgPreview{
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    opacity: 0.3;
+}
+
+#previewContainer{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.carousel-item{
+    /* Override bootstrap so that the images are shown straight away*/
+    transition: transform .0s ease-in-out;
+}

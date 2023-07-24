@@ -79,8 +79,19 @@ class ListingController extends Controller
         return redirect('create-item');
     }
 
-    public function showListings(){
-        $listings = Listing::all();
+    public function showListings(Request $request){
+        $type = $request->query->get('type');
+        if(is_null($type)){
+            $listings = Listing::all();
+        }else{
+            $listings = Listing::select('listings.*')->join('categories', 'categories.id', '=', 'listings.category_id')->where('categories.category', $type)->get();
+        }
+        
         return view('listings', ['listings' => $listings]);
+    }
+
+    public function showListing($id){
+        $listing = Listing::where('listings.id', $id)->firstOrFail();
+        return view('listing', ['listing' => $listing]);
     }
 }

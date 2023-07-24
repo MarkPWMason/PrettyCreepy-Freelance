@@ -9,9 +9,9 @@
     </div>
     <section class="content page-home theme has_welcome">
         <ul class="categories two_categories">
-            <li><a title="Clothing" style="height: 620px; overflow: hidden; position: relative;" href=""><img
+            <li><a title="Clothing" style="height: 620px; overflow: hidden; position: relative;" href="{{route('showListings',['type' => 'Clothing'])}}"><img
                         class="image" src="/images/test.png" alt=""></a></li>
-            <li><a title="Jewellery" style="height: 620px; overflow: hidden; position: relative;" href=""><img
+            <li><a title="Jewellery" style="height: 620px; overflow: hidden; position: relative;"href="{{route('showListings',['type' => 'Jewellery'])}}"><img
                         class="image" src="/images/test.png" alt=""></a></li>
         </ul>
     </section>

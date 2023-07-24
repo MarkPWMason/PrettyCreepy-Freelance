@@ -34,4 +34,5 @@ Route::post('/create-item', [ListingController::class, 'postListing'])->name('po
 Route::get('image/{fileName}', [ImageController::class, 'getImage'])->name('image');
 
 //Listings
-Route::get('/products', [ListingController::class, 'showListings']);
+Route::get('/products', [ListingController::class, 'showListings'])->name('showListings');
+Route::get('/product/{id}', [ListingController::class, 'showListing'])->name('showListing');
