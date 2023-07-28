@@ -7,9 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pretty Creepy</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     @vite(['resources/css/layout.css'])
     @if (Request::path() == '/')
         @vite(['resources/css/homepage.css'])
@@ -41,7 +38,6 @@
             <div>
                 <a href="{{ route('home') }}"><img id="headerLogo" src="/images/LogoPlaceholder.png" alt="">
             </div></a>
-            <p>ID: {{ is_null(auth()->user()) ? 'NULL' : auth()->user()->id }}</p>
 
             @if (auth()->user())
                 <form action="{{ route('adminLogout') }}" method="POST">
@@ -51,24 +47,33 @@
             @endif
 
             <div id="navIcons">
-                <ul>
-                    <li><img class="navImg" src="/images/search.webp" alt=""></li>
-                    <li><img class="navImg" src="/images/basket.webp" alt="" onclick="toggleVisibility()"></li>
+                <ul id="listItems">
+                    <form id="searchForm" action="{{ route('searchListings') }}" method="POST">
+                        @csrf
+                        <input name="search" id="searchBar" type="text">
+                        <li><img class="navImg" src="/images/search.webp" alt=""
+                                onclick="toggleVisibility('searchBar')"></li>
+                    </form>
+                    <li><img class="navImg" src="/images/basket.webp" alt=""
+                            onclick="toggleVisibility('cartModal')"></li>
                     <li><img class="navImg" src="/images/burgerbar.webp" alt=""></li>
                 </ul>
             </div>
         </div>
 
-        <div class="modal" id="cartModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+        <div id="cartModal">
+            <div>
 
-                
+
                 <div id="cartContainer">
-                    
+
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Checkout</button>
+                    <form action="{{ route('checkoutPage') }}" method="POST" id="checkoutForm">
+                        @csrf
+                        <button type="submit" id="checkoutBtn">Checkout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -81,47 +86,86 @@
     @endif
 
     <script>
-        function toggleVisibility() {
-            const cart = document.getElementById('cartModal');
-            if (cart.style.display === "none") {
-                cart.style.display = "block";
-            } else {
-                cart.style.display = "none";
+        function handleCart() {
+            let cart = localStorage.getItem('cart');
+            const cartContainer = document.getElementById('cartContainer');
+            var child = cartContainer.lastElementChild;
+            while (child) {
+                cartContainer.removeChild(child);
+                child = cartContainer.lastElementChild;
             }
+            const cartObj = cart == null ? [] : JSON.parse(cart);
+
+            cartObj.forEach(cartItem => {
+                cartInfoContainer = document.createElement('div');
+
+                cartItemInfo = document.createElement('div');
+                cartItemImg = document.createElement('img');
+
+                cartItemTitle = document.createElement('p');
+                cartItemPrice = document.createElement('p');
+
+                cartItemImg.src = cartItem.img
+
+                cartItemTitle.innerHTML = cartItem.title
+                cartItemPrice.innerHTML = cartItem.basePrice
+
+                cartItemInfo.appendChild(cartItemTitle);
+                cartItemInfo.appendChild(cartItemPrice);
+
+                cartInfoContainer.appendChild(cartItemImg)
+                cartInfoContainer.appendChild(cartItemInfo)
+
+                cartContainer.appendChild(cartInfoContainer)
+
+                cartItemInfo.classList.add('cartItemInfo')
+                cartItemImg.classList.add('cartImg')
+                cartInfoContainer.classList.add('cartInfoContainer')
+            });
         }
 
-        let cart = localStorage.getItem('cart');
-        const cartContainer = document.getElementById('cartContainer');
-        const cartObj = cart == null ? [] : JSON.parse(cart);
+        handleCart();
 
-        cartObj.forEach(cartItem => {
-            console.log(cartItem)
-            cartInfoContainer = document.createElement('div');
+        function toggleVisibility(name) {
+            const element = document.getElementById(name);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+        window.addEventListener('load', function() {
+            window.addEventListener('scroll', (e) => {
+                const header = document.getElementById('headerContainer');
+                const initialSection = document.getElementById('initialSection');
+                console.log(window.pageYOffset);
+                if (initialSection) {
+                    if (window.pageYOffset > initialSection.offsetHeight) {
+                        header.style.backgroundColor = 'var(--pink)';
+                        header.classList.add('backgroundFade');
+                    } else {
+                        header.style.backgroundColor = 'transparent';
+                        header.classList.remove('backgroundFade');
+                    }
+                }
+            })
 
-            cartItemInfo = document.createElement('div');
-            cartItemImg = document.createElement('img');
+            const checkoutForm = document.getElementById('checkoutForm')
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault()
+                console.log('pressed')
+                const input = document.createElement('input')
+                input.value = localStorage.getItem('cart')
+                input.name = 'cartValue';
+                input.type = 'hidden'
+                checkoutForm.appendChild(input);
+                checkoutForm.submit();
+            })
 
-            cartItemTitle = document.createElement('p');
-            cartItemPrice = document.createElement('p');
 
-            cartItemImg.src = cartItem.img
 
-            cartItemTitle.innerHTML = cartItem.title
-            cartItemPrice.innerHTML = cartItem.basePrice
-            
-            cartItemInfo.appendChild(cartItemTitle);
-            cartItemInfo.appendChild(cartItemPrice);
 
-            cartInfoContainer.appendChild(cartItemImg)
-            cartInfoContainer.appendChild(cartItemInfo)
-
-            cartContainer.appendChild(cartInfoContainer)
-
-            cartItemInfo.classList.add('cartItemInfo')
-            cartItemImg.classList.add('cartImg')
-            cartInfoContainer.classList.add('cartInfoContainer')
-        });
-
+        })
     </script>
 </body>
 

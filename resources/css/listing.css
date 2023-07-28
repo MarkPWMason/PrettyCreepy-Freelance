@@ -28,7 +28,6 @@ body {
 }
 
 #previewContainer{
-    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -37,4 +36,38 @@ body {
 .carousel-item{
     /* Override bootstrap so that the images are shown straight away*/
     transition: transform .0s ease-in-out;
+}
+
+#productInfoContainer{
+    margin: 80px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+#listingContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    justify-content: space-between;
+}
+
+#productDesc{
+    width: 50%;
+}
+
+#quantityContainer{
+    display: flex;
+    padding: 10px;
+}
+
+#quantity{
+    width: 15%;
+    margin-left: 5px;
+}
+
+#addToCart{
+    width: 15%;
+    align-self: center;
 }

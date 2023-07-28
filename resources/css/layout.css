@@ -6,7 +6,7 @@ body {
 }
 
 :root {
-    --pink: #ff99c7;
+    --pink: rgb(255, 153, 199);
     min-height: 100%;
     position: relative;
 }
@@ -23,6 +23,13 @@ body {
     height: 90px;
     padding: 20px 0;
     background: transparent;
+}
+
+#listItems {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 #footerContainer {
@@ -45,15 +52,19 @@ body {
     margin: 5px;
 }
 
-#navIcons ul li{
+#navIcons ul li {
     display: inline;
-    list-style-type:none;
+    list-style-type: none;
     padding: 10px;
 }
 
-.navImg{
+.navImg {
     width: 30px;
     height: 30px;
+}
+
+.navImg:hover {
+    cursor: pointer;
 }
 
 #cartModal {
@@ -65,25 +76,25 @@ body {
     color: white;
     right: 60px;
     top: 80px;
-    left: unset !important; 
+    left: unset !important;
 
     border: 5px solid var(--pink);
 }
 
-.btn{
+.btn {
     align-self: center;
     justify-self: center;
     margin: 0 auto;
 }
 
-#cartContainer{
+#cartContainer {
     display: flex;
     flex-direction: column;
 
     overflow: auto;
 }
 
-.cartInfoContainer{
+.cartInfoContainer {
     display: flex;
     flex-direction: row;
 
@@ -98,7 +109,38 @@ body {
     line-height: 10px;
 }
 
-.cartImg{
+.cartImg {
     width: 30%;
     float: left;
+}
+
+#searchForm {
+    position: relative;
+    padding-top: 10px;
+    height: auto;
+}
+
+#searchBar {
+    display: none;
+    position: absolute;
+    padding: 0;
+    height: 30px;
+    width: 300px;
+    top: -10;
+    right: 60px;
+
+    border-radius: 20px;
+}
+
+.backgroundFade {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        background-color: rgba(255, 153, 199, 0);
+    }
+    100% {
+        background-color: rgba(255, 153, 199, 1);
+    }
 }

@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('description');
             $table->string('price');
+            $table->string('sizes');
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });

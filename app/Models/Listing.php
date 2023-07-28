@@ -19,8 +19,10 @@ class Listing extends Model
     protected $fillable = [
         'image',
         'title',
+        'description',
         'price',
-        'category_id'
+        'category_id',
+        'sizes',
     ];
 
     public function category()

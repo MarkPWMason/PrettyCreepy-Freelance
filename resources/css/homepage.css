@@ -131,3 +131,17 @@ section {
     font-size: 26px;
     margin-top: 200px;
 }
+
+.productIcons {
+    position: relative;
+    text-align: center;
+}
+
+.productTitle {
+    top: 40%;
+    left: 35%;
+    right: 35%;
+    position: absolute;
+    font-size: 40px;
+    color: white;
+}
